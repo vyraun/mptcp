@@ -5,3 +5,28 @@ The implementation is not complete yet, but the main functionalities of MPTCP ca
 A brief description of the MPTCP model can be found in our recent short paper, which was presented at the WNS3 2014, with the following link: http://arxiv.org/abs/1510.07721
 
 The DOI of our first release can be found in the following link: http://dx.doi.org/10.5281/zenodo.32691
+
+Building
+------------
+./waf configure
+./waf 
+
+Error:
+
+../src/internet/model/tcp-l4-protocol.cc: In member function ‘virtual ns3::IpL4Protocol::RxStatus ns3::TcpL4Protocol::Receive(ns3::Ptr<ns3::Packet>, const ns3::Ipv4Header&, ns3::Ptr<ns3::Ipv4Interface>)’:
+../src/internet/model/tcp-l4-protocol.cc:353:15: error: variable ‘source’ set but not used [-Werror=unused-but-set-variable]
+   Ipv4Address source = ipHeader.GetSource();
+               ^
+../src/internet/model/tcp-l4-protocol.cc:354:15: error: variable ‘destination’ set but not used [-Werror=unused-but-set-variable]
+   Ipv4Address destination = ipHeader.GetDestination();
+                  ^
+cc1plus: all warnings being treated as errors
+
+Just Comment out lines 353 and 354.
+
+Now, 'build' finished successfully.
+
+./waf --run mptcp
+
+
+
